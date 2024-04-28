@@ -77,6 +77,33 @@ function onResize() {
     particleCount = calculateParticleCount();
     initParticles();
 }
+document.addEventListener('mousemove', function(e) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    document.body.appendChild(sparkle);
+
+    // Set initial position of the sparkle
+    sparkle.style.left = e.pageX + 'px';
+    sparkle.style.top = e.pageY + 'px';
+
+    // Randomize the final position slightly to simulate sparkle movement
+    const finalLeft = e.pageX + (Math.random() * 20 - 10);
+    const finalTop = e.pageY + (Math.random() * 20 - 10);
+
+    // Animate the sparkle
+    setTimeout(function() {
+        sparkle.style.left = finalLeft + 'px';
+        sparkle.style.top = finalTop + 'px';
+        sparkle.style.opacity = 1;
+    }, 1);
+
+    // Remove the sparkle after it fades out
+    setTimeout(function() {
+        sparkle.style.opacity = 0;
+        setTimeout(function() { sparkle.remove(); }, 500);
+    }, 1000);
+});
+
 
 window.addEventListener('resize', onResize);
 
