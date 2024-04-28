@@ -67,41 +67,7 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-function calculateParticleCount() {
-    return Math.floor((canvas.width * canvas.height) / 6000);
-}
 
-function onResize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    particleCount = calculateParticleCount();
-    initParticles();
-}
-document.addEventListener('mousemove', function(e) {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    document.body.appendChild(sparkle);
-
-    // Adjust initial position slightly to avoid being under the mouse pointer
-    sparkle.style.left = (e.pageX - 2) + 'px';
-    sparkle.style.top = (e.pageY - 2) + 'px';
-
-    // Ensure sparkles appear
-    setTimeout(function() {
-        sparkle.style.opacity = 1;
-        const finalLeft = e.pageX + (Math.random() * 16 - 8); // Adjust range to keep it closer
-        const finalTop = e.pageY + (Math.random() * 16 - 8);
-
-        sparkle.style.left = finalLeft + 'px';
-        sparkle.style.top = finalTop + 'px';
-
-        // Fade out the sparkle after a short while
-        setTimeout(function() {
-            sparkle.style.opacity = 0;
-            setTimeout(function() { sparkle.remove(); }, 500); // Ensure cleanup after fadeout
-        }, 1000); // Reduce visibility duration if needed
-    }, 10); // Reduce initial delay
-});
 
 
 
