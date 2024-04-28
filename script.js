@@ -82,27 +82,27 @@ document.addEventListener('mousemove', function(e) {
     sparkle.className = 'sparkle';
     document.body.appendChild(sparkle);
 
-    // Set initial position of the sparkle
-    sparkle.style.left = e.pageX + 'px';
-    sparkle.style.top = e.pageY + 'px';
+    // Adjust initial position slightly to avoid being under the mouse pointer
+    sparkle.style.left = (e.pageX - 2) + 'px';
+    sparkle.style.top = (e.pageY - 2) + 'px';
 
-    // Randomize the final position slightly to simulate sparkle movement
-    const finalLeft = e.pageX + (Math.random() * 20 - 10);
-    const finalTop = e.pageY + (Math.random() * 20 - 10);
-
-    // Animate the sparkle
+    // Ensure sparkles appear
     setTimeout(function() {
+        sparkle.style.opacity = 1;
+        const finalLeft = e.pageX + (Math.random() * 16 - 8); // Adjust range to keep it closer
+        const finalTop = e.pageY + (Math.random() * 16 - 8);
+
         sparkle.style.left = finalLeft + 'px';
         sparkle.style.top = finalTop + 'px';
-        sparkle.style.opacity = 1;
-    }, 1);
 
-    // Remove the sparkle after it fades out
-    setTimeout(function() {
-        sparkle.style.opacity = 0;
-        setTimeout(function() { sparkle.remove(); }, 500);
-    }, 1000);
+        // Fade out the sparkle after a short while
+        setTimeout(function() {
+            sparkle.style.opacity = 0;
+            setTimeout(function() { sparkle.remove(); }, 500); // Ensure cleanup after fadeout
+        }, 1000); // Reduce visibility duration if needed
+    }, 10); // Reduce initial delay
 });
+
 
 
 window.addEventListener('resize', onResize);
