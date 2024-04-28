@@ -659,3 +659,13 @@ p {
     inset 0.2em 0.3em 0.2em -0.2em #c2ccff,
     inset 10.8em 11.3em 2em -10.5em #d4e6ff2f;
 }
+.sparkle {
+    position: absolute;
+    pointer-events: none; /* Ensures the sparkle doesn't interfere with mouse events */
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s, transform 1s;
+}
